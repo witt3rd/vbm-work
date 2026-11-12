@@ -13,7 +13,5 @@ lean_lib VbmWork where
 lean_lib VbmWorkProofs where
   globs := #[.andSubmodules `VbmWorkProofs]
 
-/-- The obligation-ledger vocabulary and the reach walk the landing tool ships (`land-lean ledger`); built here so the proofs can import it. -/
-lean_lib LandLedger where
-  srcDir := ".land/tool/lean"
-  roots := #[`LandLedger, `LandWalk]
+/-- The landing tool's Lean modules (the obligation-ledger vocabulary and the reach walk, `land-lean ledger`), a small package it ships; required, never declared here, so a repository that vendors this library and requires it too shares one copy. -/
+require «land-ledger» from ".land/tool/lean"
