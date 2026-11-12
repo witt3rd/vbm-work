@@ -77,7 +77,7 @@ theorem Outcome.blocked_ok_iff (k : Kind) (r : String) (cs : List Citation) :
 /-- **An assumption is stated**: `doneWithAssumptions` is well formed exactly when something is assumed, each assumption says something, and the citations name their calls (with nothing assumed it is `done`). -/
 theorem Outcome.assumptions_ok_iff (as : List String) (cs : List Citation) :
     (Outcome.doneWithAssumptions as cs).ok = true ↔ as ≠ [] ∧ (∀ a ∈ as, 0 < a.length) ∧ citationsOk cs = true := by
-  simp [Outcome.ok, fullOk, List.isEmpty_iff, and_assoc]
+  simp [Outcome.ok, fullOk, and_assoc]
 
 /-- **A question has a default**: `needsClarification` is well formed exactly when it asks, has a default, and its citations name their calls (a question with no default is a stall). -/
 theorem Outcome.clarification_ok_iff (q d : String) (cs : List Citation) :
