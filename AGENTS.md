@@ -28,7 +28,7 @@
 
 # AGENTS.md: vbm-work
 
-The vocabulary of work, written once in Lean 4 and machine-checked: a task goes in, a typed outcome comes out, and a review returns typed findings. The four ways a run ends, the fourteen kinds of block (one word each, a word naming at most one, a word that names none refused), what makes an outcome well formed, what a reviewer may return, and what a round's review comes to.
+The vocabulary of work, written once in Lean 4 and machine-checked: a task goes in, a typed outcome comes out, and a review returns typed findings. The four ways a run ends, the eighteen kinds of block (one word each, a word naming at most one, a word that names none refused), what makes an outcome well formed, what a reviewer may return, and what a round's review comes to.
 
 **Scope.** Pure data and total functions over `Init`. No input or output, no wire format, no model call, no network, no storage, no dependency. It decides nothing about what a machine does next: reading a reply into findings or writing an outcome as JSON belongs to the application that binds it.
 

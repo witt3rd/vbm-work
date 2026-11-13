@@ -1,5 +1,6 @@
 import VbmWorkProofs.Outcome
 import VbmWorkProofs.Review
+import VbmWorkProofs.Task
 import LandLedger
 /-! # The obligation ledger
 
@@ -15,6 +16,10 @@ def ledger : List Obligation := [
   O "the-model-may-claim-six-kinds" (.proved [``VbmWork.Kind.byModel_iff, ``VbmWork.Kind.byModel_count]),
   O "an-outcome-must-say-something" (.proved [``VbmWork.Outcome.done_ok_iff, ``VbmWork.Outcome.blocked_ok_iff, ``VbmWork.Outcome.assumptions_ok_iff,
     ``VbmWork.Outcome.clarification_ok_iff, ``VbmWork.Outcome.blocked_without_reason, ``VbmWork.Outcome.assumptions_none]),
+  O "the-cycle-closes-in-kinds-a-model-may-not-claim" (.proved [``VbmWork.Kind.cycle_kinds_not_by_model]),
+  O "a-change-class-word-names-one-class" (.proved [``VbmWork.ChangeClass.mem_all, ``VbmWork.ChangeClass.ofName_name, ``VbmWork.ChangeClass.name_ofName,
+    ``VbmWork.ChangeClass.name_injective, ``VbmWork.ChangeClass.ofName_eq_none]),
+  O "a-task-says-what-is-asked" (.proved [``VbmWork.Task.ok_iff, ``VbmWork.Task.no_intent, ``VbmWork.Task.no_done_when]),
   O "a-severity-word-names-one-severity" (.proved [``VbmWork.Severity.ofName?_name, ``VbmWork.Severity.ofName?_eq_none]),
   O "a-review-blocks-exactly-when-it-has-a-fix" (.proved [``VbmWork.hasFix_iff, ``VbmWork.verdict_fix, ``VbmWork.blocked_iff,
     ``VbmWork.notes_not_blocked, ``VbmWork.verdict_notes, ``VbmWork.verdict_nil, ``VbmWork.verdict_cases]),
