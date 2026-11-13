@@ -1,6 +1,6 @@
 # 0001: vbm-work: the vocabulary of work
 
-Status: accepted 2026-11-12. S1 (the outcome and the review words) in v0.1.0; S2 (the task, the change class, the cycle's closing kinds) in v0.2.0.
+Status: accepted 2026-11-12. S1 (the outcome and the review words) in v0.1.0; S2 (the task, the change class, the cycle's closing kinds) in v0.2.0; S3 adds `timeout` in v0.3.0.
 
 ## What it is
 
@@ -14,18 +14,18 @@ review comes to. Reading a reply into findings, encoding an outcome as JSON, sto
 
 ## The slice (S1)
 
-1. **The outcome** (`VbmWork.Outcome`): four tags (`done`, `doneWithAssumptions`, `blocked`, `needsClarification`), eighteen kinds of block, each with one wire
+1. **The outcome** (`VbmWork.Outcome`): four tags (`done`, `doneWithAssumptions`, `blocked`, `needsClarification`), nineteen kinds of block, each with one wire
    word; the citation of a tool result; the outcome; and `Outcome.ok`, what makes one well formed.
 2. **The review words** (`VbmWork.Review`): `Severity` (`fix`, `note`), `Finding`, `Review`, `Verdict` (`clean`, `notes`, `blocked`, `unreviewed`), and the
    verdict of a review and of a reply that may not have decoded.
 
 3. **The task** (`VbmWork.Task`, S2): what is asked of one orchestrator run: an id, the project, the intent, how it is checked, file hints and the `ChangeClass` (docs, impl, spec, tightening, loosening, trustedC, infra, scout: how far the change may reach, which decides the checks it must pass), with what makes a task well formed. Scheduling facts (priority, keys, dependencies, needs) are NOT the task: they belong to the machine that schedules.
-4. **Four kinds of block the orchestrator's cycle closes in** (S2): `checksFailed`, `reviewFindings`, `unableToReview`, `conflictUnresolved`: new words, the harness's own, never claimed by a model. Running out of rounds is not a kind: a task that exhausts its rounds closes as the kind of its last failure.
+4. **Five kinds of block the orchestrator's cycle closes in** (S2, S3): `checksFailed`, `reviewFindings`, `unableToReview`, `conflictUnresolved`, and `timeout` (the wall deadline): new words, the harness's own, never claimed by a model. Running out of rounds is not a kind: a task that exhausts its rounds closes as the kind of its last failure.
 
 ## What is proved (`VbmWorkProofs`, one row per claim in `docs/proof-ledger.md`)
 
 - The alphabets are closed; each word names one tag or kind, a word names at most one, and a word that names none is refused: nothing is guessed, there is no default.
-- The model may claim exactly six of the eighteen kinds; the other eight are the harness's own.
+- The model may claim exactly six of the nineteen kinds; the other eight are the harness's own.
 - An outcome is well formed exactly when its text says something: a block says why, an assumption is stated, a question has a default, a citation names its call.
 - A review blocks exactly when it has a `fix`; notes alone never block; the empty review is clean.
 - A reply that could not be decoded is `unreviewed`, no review has that verdict, and it is never an approval.
@@ -40,7 +40,7 @@ vocabulary (a `limit` in the ledger: carried by the consumer's own tests). Fidel
 ## What comes next (each its own slice, each with a consumer)
 
 - The task: what is asked (class, priority, serialisation keys, dependencies, needs), when the orchestrator's input contract is specified.
-- One list of the kinds of block: the harness-side kinds an application keeps elsewhere join the eighteen by expand-and-contract; the wire words do not change.
+- One list of the kinds of block: the harness-side kinds an application keeps elsewhere join the nineteen by expand-and-contract; the wire words do not change.
 
 ## Rules
 

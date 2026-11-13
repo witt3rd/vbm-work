@@ -1,6 +1,6 @@
 # vbm-work
 
-**The vocabulary of work.** A task goes in, a typed outcome comes out, and between them a review returns typed findings. The words two machines share, written once in Lean 4 and machine-checked: the four ways a run ends and the eighteen kinds of block (each with one word, a word naming at most one, a word that names none refused), what makes an outcome well formed, what a reviewer may return, and what a round's review comes to (a `fix` blocks, notes never do, an unanswered reviewer is never an approval).
+**The vocabulary of work.** A task goes in, a typed outcome comes out, and between them a review returns typed findings. The words two machines share, written once in Lean 4 and machine-checked: the four ways a run ends and the nineteen kinds of block (each with one word, a word naming at most one, a word that names none refused), what makes an outcome well formed, what a reviewer may return, and what a round's review comes to (a `fix` blocks, notes never do, an unanswered reviewer is never an approval).
 
 > **Status: pre-release.** The first slice only. Nothing is published to a package registry.
 

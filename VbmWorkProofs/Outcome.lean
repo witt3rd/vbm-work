@@ -2,7 +2,7 @@ import VbmWork
 /-! # The typed outcome: proofs
 
 The alphabet is closed (every tag and kind is in its list), each has one word and a word names at most one (`ofName_name`, `name_injective`), a word that names
-none is refused (`ofName_eq_none`: there is no default), the model may claim exactly six of the eighteen kinds, and an outcome is well formed exactly when its text
+none is refused (`ofName_eq_none`: there is no default), the model may claim exactly six of the nineteen kinds, and an outcome is well formed exactly when its text
 says something. Each conditional statement has a witness that its hypothesis can hold. -/
 namespace VbmWork
 
@@ -63,13 +63,14 @@ theorem Kind.byModel_iff (k : Kind) :
     k.byModel = true ↔ (k = .readOnlyPath ∨ k = .protectedPath ∨ k = .redBase ∨ k = .missingInput ∨ k = .noAccess ∨ k = .contradiction) := by
   cases k <;> simp [Kind.byModel]
 
-/-- **Six of the eighteen**: the other twelve are the harness's own, never produced from a model's words. -/
+/-- **Six of the nineteen**: the other thirteen are the harness's own, never produced from a model's words. -/
 theorem Kind.byModel_count : (Kind.all.filter Kind.byModel).length = 6 := by decide
 
 /-- **The cycle's closing kinds are the harness's own**: a model may never claim one of them (they are what the orchestrator closes a task with). -/
 theorem Kind.cycle_kinds_not_by_model :
-    Kind.byModel .checksFailed = false ∧ Kind.byModel .reviewFindings = false ∧ Kind.byModel .unableToReview = false ∧ Kind.byModel .conflictUnresolved = false :=
-  ⟨rfl, rfl, rfl, rfl⟩
+    Kind.byModel .checksFailed = false ∧ Kind.byModel .reviewFindings = false ∧ Kind.byModel .unableToReview = false ∧
+      Kind.byModel .conflictUnresolved = false ∧ Kind.byModel .timeout = false :=
+  ⟨rfl, rfl, rfl, rfl, rfl⟩
 
 /-- A `done` outcome is well formed exactly when its citations name their calls. -/
 theorem Outcome.done_ok_iff (cs : List Citation) : (Outcome.done cs).ok = true ↔ citationsOk cs = true := Iff.rfl
